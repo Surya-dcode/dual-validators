@@ -1,0 +1,82 @@
+{
+  "name": "missing_member_in_two_groups",
+  "description": "A missing node listed in two groups is only E_GROUP_MEMBER_MISSING, twice.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "zz"
+        ]
+      },
+      {
+        "id": "g2",
+        "name": "Group",
+        "members": [
+          "zz"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/0"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/1/members/0"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": []
+      },
+      {
+        "id": "g2",
+        "name": "Group",
+        "members": []
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/0",
+      "value": "zz"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/1/members/0",
+      "value": "zz"
+    }
+  ]
+}

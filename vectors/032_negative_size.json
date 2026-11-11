@@ -1,0 +1,57 @@
+{
+  "name": "negative_size",
+  "description": "Negative w and h are refused. Negative coordinates are fine.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": -100,
+        "y": -5.5,
+        "w": -1,
+        "h": -0.5
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_NEGATIVE_SIZE",
+      "severity": "error",
+      "path": "/nodes/0/h"
+    },
+    {
+      "code": "E_NEGATIVE_SIZE",
+      "severity": "error",
+      "path": "/nodes/0/w"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": -100,
+        "y": -5.5,
+        "w": -1,
+        "h": -0.5
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    ]
+  },
+  "expected_changes": []
+}

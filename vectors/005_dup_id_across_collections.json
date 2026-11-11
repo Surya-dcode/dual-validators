@@ -1,0 +1,91 @@
+{
+  "name": "dup_id_across_collections",
+  "description": "Ids are unique across nodes, edges and groups together.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "a",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      }
+    ],
+    "groups": [
+      {
+        "id": "b",
+        "name": "Group",
+        "members": [
+          "a"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_DUP_ID",
+      "severity": "error",
+      "path": "/edges/0/id"
+    },
+    {
+      "code": "E_DUP_ID",
+      "severity": "error",
+      "path": "/groups/0/id"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "a",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      }
+    ],
+    "groups": [
+      {
+        "id": "b",
+        "name": "Group",
+        "members": [
+          "a"
+        ]
+      }
+    ]
+  },
+  "expected_changes": []
+}

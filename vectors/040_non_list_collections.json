@@ -1,0 +1,34 @@
+{
+  "name": "non_list_collections",
+  "description": "Collections that are not lists are treated as empty and kept as they are.",
+  "input": {
+    "nodes": {
+      "a": {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    },
+    "edges": "none",
+    "groups": null
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": {
+      "a": {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    },
+    "edges": "none",
+    "groups": null
+  },
+  "expected_changes": []
+}

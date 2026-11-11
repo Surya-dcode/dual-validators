@@ -1,0 +1,65 @@
+{
+  "name": "dangling_from",
+  "description": "An edge starts at a node that does not exist. Repair removes the edge.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "ghost",
+        "to": "a",
+        "kind": "flow"
+      },
+      {
+        "id": "e2",
+        "from": "a",
+        "to": "a",
+        "kind": "self"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/0/from"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e2",
+        "from": "a",
+        "to": "a",
+        "kind": "self"
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/0",
+      "value": "e1"
+    }
+  ]
+}

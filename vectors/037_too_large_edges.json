@@ -1,0 +1,73 @@
+{
+  "name": "too_large_edges",
+  "description": "Two edges with maxEdges 1. Non-object items count toward the limit too.",
+  "options": {
+    "maxEdges": 1
+  },
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      },
+      null
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_TOO_LARGE",
+      "severity": "error",
+      "path": "/edges"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      },
+      null
+    ]
+  },
+  "expected_changes": []
+}

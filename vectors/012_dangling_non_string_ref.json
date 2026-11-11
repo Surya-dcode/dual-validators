@@ -1,0 +1,82 @@
+{
+  "name": "dangling_non_string_ref",
+  "description": "A node has id \"1\" and the edge points at the number 1. Ids are strings and are never coerced.",
+  "input": {
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "2",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": 1,
+        "to": "2"
+      },
+      {
+        "id": "e2",
+        "to": "1"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/0/from"
+    },
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/1/from"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "2",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": []
+  },
+  "expected_changes": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/0",
+      "value": "e1"
+    },
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/1",
+      "value": "e2"
+    }
+  ]
+}

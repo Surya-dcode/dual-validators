@@ -1,0 +1,96 @@
+{
+  "name": "node_in_three_groups",
+  "description": "Each listing after the first group is reported and removed.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a"
+        ]
+      },
+      {
+        "id": "g2",
+        "name": "Group",
+        "members": [
+          "a"
+        ]
+      },
+      {
+        "id": "g3",
+        "name": "Group",
+        "members": [
+          "a"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "severity": "error",
+      "path": "/groups/1/members/0"
+    },
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "severity": "error",
+      "path": "/groups/2/members/0"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a"
+        ]
+      },
+      {
+        "id": "g2",
+        "name": "Group",
+        "members": []
+      },
+      {
+        "id": "g3",
+        "name": "Group",
+        "members": []
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "action": "remove_member",
+      "path": "/groups/1/members/0",
+      "value": "a"
+    },
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "action": "remove_member",
+      "path": "/groups/2/members/0",
+      "value": "a"
+    }
+  ]
+}

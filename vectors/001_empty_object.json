@@ -1,0 +1,8 @@
+{
+  "name": "empty_object",
+  "description": "A document with no collections at all is valid and repair adds nothing.",
+  "input": {},
+  "expected_issues": [],
+  "expected_repaired": {},
+  "expected_changes": []
+}

@@ -1,0 +1,218 @@
+{
+  "name": "empty_label_variants",
+  "description": "Empty, blank, missing, null and non-string labels get a warning. NBSP, ideographic space and U+FEFF count as blank.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "   ",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "\t\n\r",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "d",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "e",
+        "label": null,
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "f",
+        "label": 7,
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "g",
+        "label": "\u00a0",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "h",
+        "label": "\u3000\u2003",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "i",
+        "label": "\ufeff",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "j",
+        "label": " ok ",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/0/label"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/1/label"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/2/label"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/3/label"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/4/label"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/5/label"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/6/label"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/7/label"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/8/label"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "   ",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "\t\n\r",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "d",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "e",
+        "label": null,
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "f",
+        "label": 7,
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "g",
+        "label": "\u00a0",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "h",
+        "label": "\u3000\u2003",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "i",
+        "label": "\ufeff",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "j",
+        "label": " ok ",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ]
+  },
+  "expected_changes": []
+}

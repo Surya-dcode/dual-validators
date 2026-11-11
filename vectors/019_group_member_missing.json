@@ -1,0 +1,80 @@
+{
+  "name": "group_member_missing",
+  "description": "A group lists a node that does not exist. Repair removes the entry.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "zz",
+          "b"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/1"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "b"
+        ]
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/1",
+      "value": "zz"
+    }
+  ]
+}

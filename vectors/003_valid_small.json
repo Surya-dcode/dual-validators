@@ -1,0 +1,114 @@
+{
+  "name": "valid_small",
+  "description": "A small, fully valid diagram.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Start",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10,
+        "group": "g1"
+      },
+      {
+        "id": "b",
+        "label": "Middle",
+        "x": 20,
+        "y": 0,
+        "w": 10,
+        "h": 10,
+        "group": "g1"
+      },
+      {
+        "id": "c",
+        "label": "End",
+        "x": 40,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      },
+      {
+        "id": "e2",
+        "from": "b",
+        "to": "c",
+        "kind": "data"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "b"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Start",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10,
+        "group": "g1"
+      },
+      {
+        "id": "b",
+        "label": "Middle",
+        "x": 20,
+        "y": 0,
+        "w": 10,
+        "h": 10,
+        "group": "g1"
+      },
+      {
+        "id": "c",
+        "label": "End",
+        "x": 40,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      },
+      {
+        "id": "e2",
+        "from": "b",
+        "to": "c",
+        "kind": "data"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "b"
+        ]
+      }
+    ]
+  },
+  "expected_changes": []
+}

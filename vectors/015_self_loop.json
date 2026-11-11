@@ -1,0 +1,52 @@
+{
+  "name": "self_loop",
+  "description": "An edge from a node to itself with an ordinary kind. Repair refuses: removing it might lose meaning.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "a",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_SELF_LOOP",
+      "severity": "error",
+      "path": "/edges/0"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "a",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_changes": []
+}

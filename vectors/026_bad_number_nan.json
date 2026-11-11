@@ -1,0 +1,40 @@
+{
+  "name": "bad_number_nan",
+  "description": "NaN cannot be written in standard JSON, but Python's json module accepts the bare token. Here it is carried with a $num marker.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": {
+          "$num": "NaN"
+        },
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_BAD_NUMBER",
+      "severity": "error",
+      "path": "/nodes/0/x"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": {
+          "$num": "NaN"
+        },
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ]
+  },
+  "expected_changes": []
+}

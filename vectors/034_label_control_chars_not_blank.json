@@ -1,0 +1,78 @@
+{
+  "name": "label_control_chars_not_blank",
+  "description": "U+001C, U+0085 and U+200B are not in the blank set, so these labels pass. Python's str.strip() would remove the first two and get this wrong.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "\u001c",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "\u0085",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "\u200b",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "d",
+        "label": "\u001f\u001e",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ]
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "\u001c",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "\u0085",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "\u200b",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "d",
+        "label": "\u001f\u001e",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ]
+  },
+  "expected_changes": []
+}

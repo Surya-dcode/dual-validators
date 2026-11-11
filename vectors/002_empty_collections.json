@@ -1,0 +1,16 @@
+{
+  "name": "empty_collections",
+  "description": "Empty lists are valid.",
+  "input": {
+    "nodes": [],
+    "edges": [],
+    "groups": []
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [],
+    "edges": [],
+    "groups": []
+  },
+  "expected_changes": []
+}

@@ -1,0 +1,66 @@
+{
+  "name": "at_limit_is_fine",
+  "description": "Exactly maxNodes nodes and maxEdges edges is allowed.",
+  "options": {
+    "maxNodes": 2,
+    "maxEdges": 1
+  },
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_changes": []
+}

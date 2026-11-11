@@ -1,0 +1,148 @@
+{
+  "name": "ids_like_js_prototype_keys",
+  "description": "Ids that are names on Object.prototype. A JavaScript validator that uses a plain object as a lookup table finds \"valueOf\" even though no node has it.",
+  "input": {
+    "nodes": [
+      {
+        "id": "__proto__",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "constructor",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "toString",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "__proto__",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "__proto__",
+        "to": "constructor",
+        "kind": "flow"
+      },
+      {
+        "id": "e2",
+        "from": "toString",
+        "to": "valueOf",
+        "kind": "flow"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "toString",
+          "hasOwnProperty"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/1/to"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/1"
+    },
+    {
+      "code": "E_DUP_ID",
+      "severity": "error",
+      "path": "/nodes/3/id"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "__proto__",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "constructor",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "toString",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "__proto__",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "__proto__",
+        "to": "constructor",
+        "kind": "flow"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "toString"
+        ]
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/1",
+      "value": "e2"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/1",
+      "value": "hasOwnProperty"
+    }
+  ]
+}

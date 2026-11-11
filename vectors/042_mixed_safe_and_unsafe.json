@@ -1,0 +1,87 @@
+{
+  "name": "mixed_safe_and_unsafe",
+  "description": "Repair removes the dangling edge and leaves the duplicate id, the bad number and the empty label for a person.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "",
+        "x": 0,
+        "y": 0,
+        "w": {
+          "$num": "NaN"
+        },
+        "h": 10
+      },
+      {
+        "id": "a",
+        "label": "Copy",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "nope",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/0/to"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/0/label"
+    },
+    {
+      "code": "E_BAD_NUMBER",
+      "severity": "error",
+      "path": "/nodes/0/w"
+    },
+    {
+      "code": "E_DUP_ID",
+      "severity": "error",
+      "path": "/nodes/1/id"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "",
+        "x": 0,
+        "y": 0,
+        "w": {
+          "$num": "NaN"
+        },
+        "h": 10
+      },
+      {
+        "id": "a",
+        "label": "Copy",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": []
+  },
+  "expected_changes": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/0",
+      "value": "e1"
+    }
+  ]
+}

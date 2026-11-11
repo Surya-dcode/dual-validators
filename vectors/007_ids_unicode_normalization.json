@@ -1,0 +1,62 @@
+{
+  "name": "ids_unicode_normalization",
+  "description": "A precomposed e-acute and e plus a combining accent look the same but are different ids. Neither side normalizes.",
+  "input": {
+    "nodes": [
+      {
+        "id": "café",
+        "label": "Café",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "cafe\u0301",
+        "label": "Cafe\u0301",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "café",
+        "to": "cafe\u0301",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "café",
+        "label": "Café",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "cafe\u0301",
+        "label": "Cafe\u0301",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "café",
+        "to": "cafe\u0301",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_changes": []
+}

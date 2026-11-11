@@ -1,0 +1,26 @@
+{
+  "name": "dualval",
+  "version": "0.1.0",
+  "description": "Browser-side twin of the dualval Python validator for diagram documents.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Surya Doddipatla",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Surya-dcode/dual-validators.git",
+    "directory": "js"
+  },
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "dualval": "./cli.js"
+  },
+  "files": ["src", "cli.js"],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}

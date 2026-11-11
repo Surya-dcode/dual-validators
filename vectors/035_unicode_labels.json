@@ -1,0 +1,94 @@
+{
+  "name": "unicode_labels",
+  "description": "Labels in any script, including characters outside the Basic Multilingual Plane, are fine.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "日本語",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Ünïcödé",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "🙂",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "d",
+        "label": "مرحبا",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "e",
+        "label": "𝐀",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ]
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "日本語",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Ünïcödé",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "🙂",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "d",
+        "label": "مرحبا",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "e",
+        "label": "𝐀",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ]
+  },
+  "expected_changes": []
+}

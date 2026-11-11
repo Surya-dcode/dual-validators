@@ -1,0 +1,57 @@
+{
+  "name": "dangling_both_ends",
+  "description": "Both ends are missing: two issues, one removal.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "x",
+        "to": "y",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/0/from"
+    },
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/0/to"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": []
+  },
+  "expected_changes": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/0",
+      "value": "e1"
+    }
+  ]
+}

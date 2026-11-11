@@ -1,0 +1,184 @@
+{
+  "name": "mixed_safe_repairs",
+  "description": "Every safe repair at once. The repaired document validates clean.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      },
+      {
+        "id": "e2",
+        "from": "b",
+        "to": "gone",
+        "kind": "flow"
+      },
+      {
+        "id": "e3",
+        "from": "gone",
+        "to": "c",
+        "kind": "flow"
+      },
+      {
+        "id": "e4",
+        "from": "b",
+        "to": "c",
+        "kind": "flow"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "x"
+        ]
+      },
+      {
+        "id": "g2",
+        "name": "Group",
+        "members": [
+          "a",
+          "b",
+          "c"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/1/to"
+    },
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/2/from"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/1"
+    },
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "severity": "error",
+      "path": "/groups/1/members/0"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow"
+      },
+      {
+        "id": "e4",
+        "from": "b",
+        "to": "c",
+        "kind": "flow"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a"
+        ]
+      },
+      {
+        "id": "g2",
+        "name": "Group",
+        "members": [
+          "b",
+          "c"
+        ]
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/1",
+      "value": "e2"
+    },
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/2",
+      "value": "e3"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/1",
+      "value": "x"
+    },
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "action": "remove_member",
+      "path": "/groups/1/members/0",
+      "value": "a"
+    }
+  ]
+}

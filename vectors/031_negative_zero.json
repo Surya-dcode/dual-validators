@@ -1,0 +1,30 @@
+{
+  "name": "negative_zero",
+  "description": "-0 and -0.0 are zero, not negative.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": -0,
+        "y": 0,
+        "w": -0,
+        "h": -0.0
+      }
+    ]
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": -0,
+        "y": 0,
+        "w": -0,
+        "h": -0.0
+      }
+    ]
+  },
+  "expected_changes": []
+}

@@ -1,0 +1,49 @@
+{
+  "name": "bad_number_infinity",
+  "description": "Infinity and -Infinity are rejected. -Infinity is not also reported as a negative size.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": {
+          "$num": "Infinity"
+        },
+        "w": {
+          "$num": "-Infinity"
+        },
+        "h": 10
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_BAD_NUMBER",
+      "severity": "error",
+      "path": "/nodes/0/w"
+    },
+    {
+      "code": "E_BAD_NUMBER",
+      "severity": "error",
+      "path": "/nodes/0/y"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": {
+          "$num": "Infinity"
+        },
+        "w": {
+          "$num": "-Infinity"
+        },
+        "h": 10
+      }
+    ]
+  },
+  "expected_changes": []
+}

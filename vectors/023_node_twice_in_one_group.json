@@ -1,0 +1,50 @@
+{
+  "name": "node_twice_in_one_group",
+  "description": "Listing a node twice in the same group is not E_NODE_IN_TWO_GROUPS and repair leaves it.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "a"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "a"
+        ]
+      }
+    ]
+  },
+  "expected_changes": []
+}

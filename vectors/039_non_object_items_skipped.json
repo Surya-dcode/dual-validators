@@ -1,0 +1,78 @@
+{
+  "name": "non_object_items_skipped",
+  "description": "Items that are not objects are skipped by every check (a schema layer owns shape), and a members value that is not a list is left alone.",
+  "input": {
+    "nodes": [
+      null,
+      5,
+      "a",
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      "x",
+      [],
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "a",
+        "kind": "self"
+      }
+    ],
+    "groups": [
+      [],
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": "a"
+      },
+      {
+        "id": "g2"
+      }
+    ]
+  },
+  "expected_issues": [],
+  "expected_repaired": {
+    "nodes": [
+      null,
+      5,
+      "a",
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      "x",
+      [],
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "a",
+        "kind": "self"
+      }
+    ],
+    "groups": [
+      [],
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": "a"
+      },
+      {
+        "id": "g2"
+      }
+    ]
+  },
+  "expected_changes": []
+}

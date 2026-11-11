@@ -1,0 +1,102 @@
+{
+  "name": "group_member_non_string",
+  "description": "Member entries that are not strings never match a node, even a node with id \"1\".",
+  "input": {
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          1,
+          null,
+          "a",
+          true
+        ]
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/0"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/1"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/3"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a"
+        ]
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/0",
+      "value": 1
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/1",
+      "value": null
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/3",
+      "value": true
+    }
+  ]
+}

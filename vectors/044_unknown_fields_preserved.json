@@ -1,0 +1,134 @@
+{
+  "name": "unknown_fields_preserved",
+  "description": "Fields outside the invariants, including nested data, survive repair untouched.",
+  "input": {
+    "meta": {
+      "title": "Plan",
+      "tags": [
+        "x"
+      ]
+    },
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10,
+        "style": {
+          "fill": "#fff"
+        }
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow",
+        "weight": 2.5
+      },
+      {
+        "id": "e2",
+        "from": "a",
+        "to": "z",
+        "kind": "flow",
+        "note": "drop me"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "q"
+        ],
+        "color": "red"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/1/to"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/1"
+    }
+  ],
+  "expected_repaired": {
+    "meta": {
+      "title": "Plan",
+      "tags": [
+        "x"
+      ]
+    },
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10,
+        "style": {
+          "fill": "#fff"
+        }
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "b",
+        "kind": "flow",
+        "weight": 2.5
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a"
+        ],
+        "color": "red"
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/1",
+      "value": "e2"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/1",
+      "value": "q"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "name": "self_loop_custom_kinds",
+  "description": "With selfLoopKinds set to [\"retry\"], kind \"self\" is no longer allowed.",
+  "options": {
+    "selfLoopKinds": [
+      "retry"
+    ]
+  },
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "a",
+        "kind": "self"
+      },
+      {
+        "id": "e2",
+        "from": "a",
+        "to": "a",
+        "kind": "retry"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_SELF_LOOP",
+      "severity": "error",
+      "path": "/edges/0"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "a",
+        "to": "a",
+        "kind": "self"
+      },
+      {
+        "id": "e2",
+        "from": "a",
+        "to": "a",
+        "kind": "retry"
+      }
+    ]
+  },
+  "expected_changes": []
+}

@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Ruff
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Pytest
+        run: pytest
+
+  javascript:
+    name: Node 20
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: node --test
+        working-directory: js
+        run: node --test
+
+  parity:
+    name: Parity checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install
+        run: pip install -e .
+      - name: Embedded spec copies are up to date
+        run: python scripts/sync_spec.py --check
+      - name: Every code has a vector and both sides implement the spec
+        run: python scripts/check_coverage.py
+      - name: Fuzz with a fixed seed
+        run: python scripts/fuzz_parity.py --n 1000 --seed 1
+      - name: Fuzz with a new seed each run
+        # The seed is printed, so a failure can be reproduced locally.
+        run: python scripts/fuzz_parity.py --n 1000 --seed ${{ github.run_number }}

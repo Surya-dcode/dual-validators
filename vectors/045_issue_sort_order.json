@@ -1,0 +1,266 @@
+{
+  "name": "issue_sort_order",
+  "description": "Issues sort by path. Array indexes compare as numbers, so /nodes/2 comes before /nodes/10, and a path comes before the paths below it.",
+  "input": {
+    "nodes": [
+      {
+        "id": "n0",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n1",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n2",
+        "label": "",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n3",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n4",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n5",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n6",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n7",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n8",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n9",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n10",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": -1,
+        "h": 10
+      },
+      {
+        "id": "n2",
+        "label": "",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "from": "n0",
+        "to": "n0",
+        "kind": "flow"
+      },
+      {
+        "id": "e1",
+        "from": "n1",
+        "to": "zz",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_SELF_LOOP",
+      "severity": "error",
+      "path": "/edges/0"
+    },
+    {
+      "code": "E_DANGLING_EDGE",
+      "severity": "error",
+      "path": "/edges/1/to"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/2/label"
+    },
+    {
+      "code": "E_NEGATIVE_SIZE",
+      "severity": "error",
+      "path": "/nodes/10/w"
+    },
+    {
+      "code": "E_DUP_ID",
+      "severity": "error",
+      "path": "/nodes/11/id"
+    },
+    {
+      "code": "E_EMPTY_LABEL",
+      "severity": "warning",
+      "path": "/nodes/11/label"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "n0",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n1",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n2",
+        "label": "",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n3",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n4",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n5",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n6",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n7",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n8",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n9",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "n10",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": -1,
+        "h": 10
+      },
+      {
+        "id": "n2",
+        "label": "",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "from": "n0",
+        "to": "n0",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_DANGLING_EDGE",
+      "action": "remove_edge",
+      "path": "/edges/1",
+      "value": "e1"
+    }
+  ]
+}

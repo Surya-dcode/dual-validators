@@ -1,0 +1,73 @@
+{
+  "name": "empty_string_id",
+  "description": "The empty string is a valid id and can be duplicated like any other.",
+  "input": {
+    "nodes": [
+      {
+        "id": "",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "",
+        "to": "",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_SELF_LOOP",
+      "severity": "error",
+      "path": "/edges/0"
+    },
+    {
+      "code": "E_DUP_ID",
+      "severity": "error",
+      "path": "/nodes/1/id"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "",
+        "to": "",
+        "kind": "flow"
+      }
+    ]
+  },
+  "expected_changes": []
+}

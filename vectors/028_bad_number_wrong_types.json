@@ -1,0 +1,49 @@
+{
+  "name": "bad_number_wrong_types",
+  "description": "A numeric string, null, a boolean and a missing field are all bad numbers. Python's bool is an int subclass, so it must be excluded explicitly.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "A",
+        "x": "10",
+        "y": null,
+        "w": true
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_BAD_NUMBER",
+      "severity": "error",
+      "path": "/nodes/0/h"
+    },
+    {
+      "code": "E_BAD_NUMBER",
+      "severity": "error",
+      "path": "/nodes/0/w"
+    },
+    {
+      "code": "E_BAD_NUMBER",
+      "severity": "error",
+      "path": "/nodes/0/x"
+    },
+    {
+      "code": "E_BAD_NUMBER",
+      "severity": "error",
+      "path": "/nodes/0/y"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "A",
+        "x": "10",
+        "y": null,
+        "w": true
+      }
+    ]
+  },
+  "expected_changes": []
+}

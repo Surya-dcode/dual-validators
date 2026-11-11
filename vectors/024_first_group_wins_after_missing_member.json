@@ -1,0 +1,146 @@
+{
+  "name": "first_group_wins_after_missing_member",
+  "description": "Ownership is decided by existing members only, and change paths refer to the input document.",
+  "input": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "missing",
+          "b"
+        ]
+      },
+      {
+        "id": "g2",
+        "name": "Group",
+        "members": [
+          "missing2",
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    ]
+  },
+  "expected_issues": [
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/0/members/1"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "severity": "error",
+      "path": "/groups/1/members/0"
+    },
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "severity": "error",
+      "path": "/groups/1/members/1"
+    },
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "severity": "error",
+      "path": "/groups/1/members/2"
+    }
+  ],
+  "expected_repaired": {
+    "nodes": [
+      {
+        "id": "a",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "b",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      },
+      {
+        "id": "c",
+        "label": "Node",
+        "x": 0,
+        "y": 0,
+        "w": 10,
+        "h": 10
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "name": "Group",
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "g2",
+        "name": "Group",
+        "members": [
+          "c"
+        ]
+      }
+    ]
+  },
+  "expected_changes": [
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/0/members/1",
+      "value": "missing"
+    },
+    {
+      "code": "E_GROUP_MEMBER_MISSING",
+      "action": "remove_member",
+      "path": "/groups/1/members/0",
+      "value": "missing2"
+    },
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "action": "remove_member",
+      "path": "/groups/1/members/1",
+      "value": "b"
+    },
+    {
+      "code": "E_NODE_IN_TWO_GROUPS",
+      "action": "remove_member",
+      "path": "/groups/1/members/2",
+      "value": "a"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dual-validators"
+version = "0.1.0"
+description = "Keep a Python validator and a JavaScript validator for the same JSON document in exact agreement, using one spec and one set of test vectors."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Surya Doddipatla" }]
+requires-python = ">=3.11"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+]
+
+[project.optional-dependencies]
+flask = ["flask>=3.0"]
+dev = ["pytest>=8", "ruff>=0.5", "flask>=3.0"]
+
+[project.scripts]
+dualval = "dualval.__main__:main"
+
+[project.urls]
+Repository = "https://github.com/Surya-dcode/dual-validators"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dualval"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["dualval", "conftest"]
